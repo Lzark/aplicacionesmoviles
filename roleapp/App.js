@@ -24,7 +24,7 @@ export default function App() {
             width: 80,
             height: 80,
             borderRadius: 40,
-            backgroundColor: "#e32f45",
+            backgroundColor: "#FFCB77",
             justifyContent: "center",
             alignItems: "center",
           }}
@@ -72,6 +72,11 @@ export default function App() {
                   size={32}
                   color={focused ? "green" : "gray"}
                 />
+                <Text
+                  style={{ fontSize: 20, color: focused ? "green" : "gray" }}
+                >
+                  Dayli
+                </Text>
               </View>
             ),
           }}
@@ -108,7 +113,7 @@ export default function App() {
                 <Text
                   style={{ fontSize: 20, color: focused ? "green" : "gray" }}
                 >
-                  Dayli
+                  ToDo's
                 </Text>
               </View>
             ),
