@@ -9,28 +9,20 @@ import { CreateTask } from "./screens/CreateTask";
 import { Ionicons } from "@expo/vector-icons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Statistics } from "./screens/Statistics";
-
+import * as SQLite from "expo-sqlite";
+import { useEffect } from "react";
+import { setupDatabase } from "./database";
 export default function App() {
+  useEffect(() => {
+    setupDatabase();
+  }, []);
+
   const Tab = createBottomTabNavigator();
 
   const CustomTabBarButton = ({ children, onPress }) => {
     return (
-      <TouchableOpacity
-        style={{ top: -30, justifyContent: "center", alignItems: "center" }}
-        onPress={onPress}
-      >
-        <View
-          style={{
-            width: 80,
-            height: 80,
-            borderRadius: 40,
-            backgroundColor: "#FFCB77",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          {children}
-        </View>
+      <TouchableOpacity style={styles.tabBarButton} onPress={onPress}>
+        {children}
       </TouchableOpacity>
     );
   };
@@ -41,18 +33,7 @@ export default function App() {
         screenOptions={{
           headerShown: false,
           tabBarShowLabel: false,
-          tabBarStyle: {
-            // padding: 20,
-            paddingTop: 25,
-            position: "absolute",
-            bottom: 15,
-            left: 15,
-            right: 15,
-            elevation: 0,
-            backgroundColor: "#faf",
-            borderRadius: 10,
-            height: "auto",
-          },
+          tabBarStyle: styles.tabBar,
         }}
       >
         <Tab.Screen
@@ -60,20 +41,14 @@ export default function App() {
           component={Daylies}
           options={{
             tabBarIcon: ({ focused }) => (
-              <View
-                style={{
-                  alignItems: "center",
-                  // justifyContent: "center",
-                  // margin: 10,
-                }}
-              >
+              <View style={styles.tabBarIconContainer}>
                 <Ionicons
                   name="checkmark-circle-outline"
-                  size={32}
+                  size={25}
                   color={focused ? "green" : "gray"}
                 />
                 <Text
-                  style={{ fontSize: 20, color: focused ? "green" : "gray" }}
+                  style={{ fontSize: 14, color: focused ? "green" : "gray" }}
                 >
                   Dayli
                 </Text>
@@ -86,32 +61,31 @@ export default function App() {
           name="Create"
           component={CreateTask}
           options={{
-            tabBarIcon: ({ focused }) => {
-              return <Ionicons name="add-outline" size={60} color="white" />;
-            },
+            tabBarIcon: ({ focused }) => (
+              <View style={styles.createTabIconContainer}>
+                <Ionicons name="add-outline" size={35} color="white" />
+              </View>
+            ),
             tabBarButton: (props) => <CustomTabBarButton {...props} />,
           }}
-        ></Tab.Screen>
+        />
 
         <Tab.Screen
           name="To Do's"
           component={ToDos}
           options={{
             tabBarIcon: ({ focused }) => (
-              <View
-                style={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                  // margin: 10,
-                }}
-              >
+              <View style={styles.tabBarIconContainer}>
                 <Ionicons
                   name="checkmark-circle-outline"
-                  size={32}
+                  size={25}
                   color={focused ? "green" : "gray"}
                 />
                 <Text
-                  style={{ fontSize: 20, color: focused ? "green" : "gray" }}
+                  style={[
+                    styles.tabBarText,
+                    { color: focused ? "green" : "gray" },
+                  ]}
                 >
                   ToDo's
                 </Text>
@@ -136,14 +110,31 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  shadow: {
-    shadowColor: "#7F5DF0",
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.5,
-    elevation: 5,
+  tabBar: {
+    paddingTop: 15,
+    backgroundColor: "#faf",
+    borderRadius: 10,
+    height: 70,
+  },
+  tabBarButton: {
+    top: -30,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  tabBarIconContainer: {
+    alignItems: "center",
+    width: 70,
+  },
+  createTabIconContainer: {
+    alignItems: "center",
+    width: 70,
+    backgroundColor: "#e32f45",
+    borderRadius: 40,
+    height: 70,
+    justifyContent: "center",
+  },
+  tabBarText: {
+    fontSize: 14,
+    marginTop: 5,
   },
 });
