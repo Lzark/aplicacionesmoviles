@@ -11,12 +11,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Statistics } from "./screens/Statistics";
 import * as SQLite from "expo-sqlite";
 import { useEffect } from "react";
-import { setupDatabase } from "./database";
 export default function App() {
-  useEffect(() => {
-    setupDatabase();
-  }, []);
-
   const Tab = createBottomTabNavigator();
 
   const CustomTabBarButton = ({ children, onPress }) => {
