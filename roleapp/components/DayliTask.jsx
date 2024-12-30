@@ -1,14 +1,12 @@
 import { Text, View, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { useState } from "react";
 import Checkbox from "expo-checkbox";
-
-export function DayliTask({ navigation, children, onPress }) {
+import { Link } from "expo-router";
+export function DayliTask({ children, onPress }) {
   const [isChecked, setChecked] = useState(false);
-  const onButtonPress = () => {
-    //
-  };
+  // const onButtonPress = () => {}; onPress={onButtonPress}
   return (
-    <TouchableOpacity onPress={onButtonPress}>
+    <TouchableOpacity>
       <View style={styles.container}>
         <Checkbox
           style={styles.checkbox}

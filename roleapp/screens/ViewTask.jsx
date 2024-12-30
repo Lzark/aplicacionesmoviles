@@ -1,9 +1,18 @@
-import { Text, View } from "react-native";
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
 
-export function ViewTask() {
+export default function ViewTask() {
   return (
-    <View>
-      <Text>Esta es la vista de una tarea</Text>
+    <View style={styles.container}>
+      <Text>Detalles de la tarea</Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
