@@ -49,7 +49,7 @@ export default function CreateTask() {
         await addTodo(name, description);
         setName("");
         setDescription("");
-        showToast();
+        showToast("Se ha creado con exito");
       } catch (error) {
         console.error("Error al insertar tarea: ", error);
         Alert.alert("Error al insertar tarea");
@@ -64,11 +64,9 @@ export default function CreateTask() {
       const currentDate = selectedDate || date;
       setDate(currentDate);
 
-      // Extraer horas y minutos del objeto Date
       const selectedHour = currentDate.getHours();
       const selectedMinute = currentDate.getMinutes();
 
-      // Actualizar los estados
       setHour(selectedHour);
       setMinute(selectedMinute);
 
@@ -124,13 +122,6 @@ export default function CreateTask() {
       saturday: saturday,
       sunday: sunday,
     });
-    //     monday
-    // tuesday
-    // wednesday
-    // thursday
-    // friday
-    // saturday
-    // sunday
     if (name && description && hour && minute) {
       try {
         await addDayli(name, description, hour, minute, days);
@@ -316,7 +307,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   button: {
-    backgroundColor: "#007bff",
+    backgroundColor: "#fc9505",
     borderRadius: 5,
     paddingVertical: 10,
     paddingHorizontal: 20,
@@ -332,7 +323,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   buttonTimePicker: {
-    backgroundColor: "#007bff",
+    backgroundColor: "#fcc06d",
     borderRadius: 5,
     paddingVertical: 10,
     paddingHorizontal: 20,
@@ -351,7 +342,8 @@ const styles = StyleSheet.create({
   buttonDayActive: {
     borderRadius: 20,
     borderColor: "#000",
-    backgroundColor: "#007bff",
+    backgroundColor: "#f59c20",
+    color: "#",
     marginVertical: 20,
     width: 35,
     height: 35,

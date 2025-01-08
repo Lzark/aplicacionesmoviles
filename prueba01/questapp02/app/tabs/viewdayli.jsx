@@ -23,6 +23,7 @@ import {
   addDayli,
   getDayliById,
   updateDayliById,
+  deleteDayliyId,
 } from "../../database";
 import {
   useNavigation,
@@ -33,6 +34,7 @@ import { useRoutes } from "../../contexts/GlobalContexts";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 import { useRouter, useLocalSearchParams } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function viewdayli() {
   const [name, setName] = useState("");
@@ -151,6 +153,7 @@ export default function viewdayli() {
         setName("");
         setDescription("");
         ToastAndroid.show("Modificado con éxito", ToastAndroid.SHORT);
+        navigation.goBack();
       } catch (error) {
         console.error("Error al modificar tarea: ", error);
         ToastAndroid.show("Error", ToastAndroid.SHORT);
@@ -175,12 +178,30 @@ export default function viewdayli() {
       Alert.alert("Ingrese todos los datos");
     }
   }
+  const eliminarDayli = async () => {
+    try {
+      await deleteDayliyId(params.id);
+      setName("");
+      setDescription("");
+      ToastAndroid.show("Se ha eliminado con éxito", ToastAndroid.SHORT);
+      navigation.goBack();
+    } catch (error) {
+      console.error("Error al eliminar la tarea: ", error);
+      ToastAndroid.show("Error", ToastAndroid.SHORT);
+    }
+  };
 
   const showToast = (text) => {
     ToastAndroid.show(text, ToastAndroid.SHORT, ToastAndroid.BOTTOM);
   };
   return (
     <View>
+      <View style={styles.containerButtonDelete}>
+        <TouchableOpacity onPress={eliminarDayli} style={styles.deleteButton}>
+          {/* <Text style={styles.textDeleteButton}>Borrar</Text> */}
+          <Ionicons name="trash-outline" size={25} color={"#fff"} />
+        </TouchableOpacity>
+      </View>
       <TextInput
         style={styles.input}
         onChangeText={setName}
@@ -367,5 +388,18 @@ const styles = StyleSheet.create({
     textAlign: "left",
     marginTop: 10,
     marginHorizontal: 20,
+  },
+  deleteButton: {
+    backgroundColor: "#ff3838",
+    borderRadius: 25,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    width: 45,
+    height: 45,
+    margin: 10,
+  },
+  textDeleteButton: { color: "#fff" },
+  containerButtonDelete: {
+    alignItems: "flex-end",
   },
 });

@@ -10,7 +10,6 @@ export default function TabsLayout() {
       </TouchableOpacity>
     );
   };
-
   return (
     <GlobalStateProvider>
       <Tabs
@@ -42,7 +41,6 @@ export default function TabsLayout() {
             ),
           }}
         />
-
         <Tabs.Screen
           name="createTask"
           options={{
@@ -54,7 +52,6 @@ export default function TabsLayout() {
             tabBarButton: (props) => <CustomTabBarButton {...props} />,
           }}
         />
-
         <Tabs.Screen
           name="todo"
           options={{
@@ -77,7 +74,6 @@ export default function TabsLayout() {
             ),
           }}
         />
-
         <Tabs.Screen
           name="viewtodo"
           options={{
@@ -94,7 +90,6 @@ export default function TabsLayout() {
     </GlobalStateProvider>
   );
 }
-
 const styles = StyleSheet.create({
   tabBar: {
     paddingTop: 15,

@@ -107,6 +107,11 @@ export async function updateDayliById(id, name, description, hour, minute) {
   );
 }
 
+export async function deleteDayliyId(id) {
+  const db = await openDatabase();
+  await db.runAsync("DELETE FROM daylie WHERE id = $id", { $id: id });
+}
+
 // "id" INTEGER PRIMARY KEY NOT NULL,
 // "name" TEXT NOT NULL,
 // "description" TEXT NOT NULL,

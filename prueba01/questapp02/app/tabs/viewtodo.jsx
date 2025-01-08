@@ -94,7 +94,7 @@ export default function viewtodo() {
 
       <View style={styles.containerButton}>
         <TouchableOpacity style={styles.button} onPress={modificarToDo}>
-          <Text style={styles.textButton}>Modificar tarea Tarea</Text>
+          <Text style={styles.textButton}>Modificar Tarea</Text>
         </TouchableOpacity>
       </View>
     </View>

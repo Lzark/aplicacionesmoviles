@@ -31,16 +31,7 @@ function DayliCard({ information, onTaskDeleted }) {
 
   const navigation = useNavigation();
 
-  const onPseudoRadioPress = async () => {
-    // try {
-    //   // await deleteToDoById(information.id);
-    //   showToast("Se eliminó correctamente la tarea");
-    //   onTaskDeleted();
-    // } catch (error) {
-    //   console.error("Error al eliminar la tarea:", error);
-    // }
-  };
-  //usar efectos con el isChecked comprobando
+  const onPseudoRadioPress = async () => {};
   useEffect(() => {
     const updateState = async () => {
       console.log(checked);
@@ -64,7 +55,7 @@ function DayliCard({ information, onTaskDeleted }) {
             style={styles.checkbox}
             value={checked}
             onValueChange={setChecked}
-            color={checked ? "#4630EB" : undefined}
+            color={checked ? "#d96500" : undefined}
           />
         </View>
       </TouchableOpacity>
@@ -157,6 +148,7 @@ export default function Daylies() {
     </SafeAreaProvider>
   );
 }
+
 const styles = StyleSheet.create({
   checkbox: {
     margin: 8,
@@ -204,7 +196,6 @@ const stylesToDoCard = StyleSheet.create({
     alignItems: "center",
   },
   pseudoRadio: {
-    // backgroundColor: "blue",
     width: 26,
     height: 26,
     borderWidth: 2,
